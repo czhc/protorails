@@ -9,14 +9,15 @@ class UserSessionsController < ApplicationController
     else
       session[:user_username] = user_session_params[:username]
       session[:user_action] = :signin
-      flash[:error] = "Invalid email or password"
+      flash[:error] = "Invalid username or password"
       redirect_to root_url
     end
   end
 
   def destroy
     sign_out current_user if current_user
-    redirect_back_or_default request.env['HTTP_REFERER'].present? ? request.env['HTTP_REFERER'] : root_path, notice: 'You have logged out.'
+    flash[:notce] = "Logged Out"
+    redirect_to root_path
   end
 
   private
