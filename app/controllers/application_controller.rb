@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
                 :sign_out
 
   def sanitize_user_form
+    session[:user_username] = nil
     session[:user_email] = nil
     session[:user_action] = nil
   end

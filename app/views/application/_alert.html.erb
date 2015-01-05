@@ -1,0 +1,14 @@
+<% if flash[:error] %>
+  <div class="col-sm-12">
+    <div class="alert alert-danger marvm">
+      <%= flash[:error] %>
+    </div>
+  </div>
+<% end %>
+<% if flash[:notice] %>
+  <div class="col-sm-12">
+    <div class="alert alert-info marvm">
+      <%= flash[:notice] %>
+    </div>
+  </div>
+<% end %>

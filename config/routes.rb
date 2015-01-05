@@ -6,7 +6,14 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'pages#home'
 
-  resources :users
+  get '/account', :to => 'users#edit'
+
+  post '/login' => 'user_sessions#create'
+  delete '/logout' => 'user_sessions#destroy'
+
+  get '/signup' => 'users#new'
+
+  resources :users, only: [:edit, :create, :update, :destroy]
 
 
   # Example of regular route:
