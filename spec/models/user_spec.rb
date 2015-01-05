@@ -44,7 +44,7 @@ RSpec.describe User, :type => :model do
 
   describe "has secure password" do
     it "with valid password" do
-      expect(user.authenticate(user.password)).to be_truthy
+      expect(user.authenticate(user.password)).to be_an_instance_of(User)
     end
 
     it "with invalid password" do
