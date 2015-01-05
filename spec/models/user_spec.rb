@@ -42,13 +42,23 @@ RSpec.describe User, :type => :model do
     it { should allow_value(user.password).for(:password) }
   end
 
-  describe "has secure password" do
+  describe ".has secure password" do
     it "with valid password" do
       expect(user.authenticate(user.password)).to be_an_instance_of(User)
     end
 
     it "with invalid password" do
       expect(user.authenticate("bad password")).to be_falsy
+    end
+  end
+
+  describe '.find_by_login_or_email' do
+    it "for valid credentials" do
+      expect(User.find_by_login_or_email(user.login)).to be_an_instance_of(User)
+    end
+
+    it "for invalid credentials" do
+      expect(User.find_by_login_or_email("non existent")).to be_nil
     end
   end
 end
