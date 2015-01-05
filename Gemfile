@@ -27,10 +27,14 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails_config'
-gem 'quiet_assets', group: :development
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+
+group :development do
+  gem 'quiet_assets'
+  gem 'letter_opener'
+end
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -44,8 +48,35 @@ group :development, :test do
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
 end
 
+# group :development, :test do
+#   gem 'rspec'
+#   gem 'rspec-rails'
+#   gem 'rb-fsevent', require: false
+#   gem 'guard-rspec'
+#   gem 'capybara'
+#   gem 'launchy'
+# end
+
+group :development, :test do
+  gem 'rspec-rails'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'shoulda-matchers'
+  # gem 'vcr'
+  # gem 'autotest-rails'
+  gem 'rspec-autotest'
+  gem 'capybara'
+  gem 'capybara-webkit'
+  # gem 'rack_session_access'
+end
+
+group :test do
+  gem 'webmock'
+  gem 'database_cleaner'
+  gem 'timecop'
+  # gem 'rspec-json_matcher'
+end
