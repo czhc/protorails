@@ -1,4 +1,9 @@
 class UserSessionsController < ApplicationController
+  def new
+    session[:user_action] = :signin
+    redirect_to root_path    
+  end
+
   def create
     user = User.find_by_login_or_email(user_session_params[:username])
     if user && user.authenticate(user_session_params[:password])

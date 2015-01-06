@@ -8,12 +8,13 @@ Rails.application.routes.draw do
 
   get '/account', :to => 'users#edit'
 
-  post '/login' => 'user_sessions#create'
+  get '/signin' => 'user_sessions#new'
+  post '/signin' => 'user_sessions#create'
   delete '/logout' => 'user_sessions#destroy'
 
   get '/signup' => 'users#new'
 
-  resources :users, only: [:edit, :create, :update, :destroy]
+  resources :users, only: [:new, :edit, :create, :update, :destroy]
 
 
   # Example of regular route:
