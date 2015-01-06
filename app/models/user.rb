@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   has_secure_password
-  enum role: {admin: 1, editor: 2, agent: 3}
 
   RESERVED_NAMES = %w{ logout login register signup activate verify forgot reset resend_activation verifying about
                       terms unsubscribe account users session questions admin }
