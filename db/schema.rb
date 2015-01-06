@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150106045913) do
+ActiveRecord::Schema.define(version: 20150106081422) do
 
   create_table "users", force: :cascade do |t|
-    t.string   "login",           limit: 255, null: false
-    t.string   "email",           limit: 255, null: false
-    t.string   "password_digest", limit: 255, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "role",            limit: 4,   default: 0
+    t.string   "login",           limit: 255,                 null: false
+    t.string   "email",           limit: 255,                 null: false
+    t.string   "password_digest", limit: 255,                 null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.boolean  "admin",           limit: 1,   default: false
   end
 
-  add_index "users", ["role"], name: "index_users_on_role", using: :btree
+  add_index "users", ["admin"], name: "index_users_on_admin", using: :btree
 
 end
