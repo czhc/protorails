@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
 
   validates :login, uniqueness: {
                       case_sensitive: false,
-                      on: :create
                     }, 
                     presence: true, 
                     length: { minimum: 3, maximum: 15}, 
@@ -17,13 +16,12 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: {
                       case_sensitive: false,
-                      on: :create
                     }, 
-                    presence: true, 
+                    presence: true,
                     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
                               message: "Invalid email format."}
 
-  validates :password,  presence: true, 
+  validates :password,  confirmation: true,
                         length: { minimum: 8, maximum: 22 }, 
                         format: { with: /\A[a-z0-9_-]+\z/i }
 

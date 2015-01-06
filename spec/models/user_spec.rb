@@ -3,9 +3,7 @@ require 'rails_helper'
 RSpec.describe User, :type => :model do
   let(:user) { FactoryGirl.create(:user) }
   describe "validations" do
-    before do
-      user
-    end
+    subject { FactoryGirl.build(:user) }
 
     it { should validate_uniqueness_of(:login) }
     it { should validate_presence_of(:login) }
@@ -33,7 +31,9 @@ RSpec.describe User, :type => :model do
         with_message("Invalid email format.") 
     end
 
-    it { should validate_presence_of(:password) }
+    # has_secure_password tests for password presence
+    # it { should validate_presence_of(:password) }
+    it { should validate_confirmation_of(:password) }
     it do 
       should ensure_length_of(:password).
         is_at_least(8).
