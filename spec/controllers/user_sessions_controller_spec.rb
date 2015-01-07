@@ -19,7 +19,6 @@ RSpec.describe UserSessionsController, :type => :controller do
 
     describe "with valid user credentials" do
       it "signs in user" do
-        p valid_attributes
         post :create, { user_session: valid_attributes }
         expect(request.session[:user_id]).to eq(user.id)
       end
