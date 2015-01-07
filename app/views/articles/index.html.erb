@@ -1,0 +1,12 @@
+<% if @articles.any? %>
+  <% @articles.each do |article| %>
+    <%= link_to "#{article.title}", article_path(article) %>
+    <%= link_to "Edit", edit_article_path(article) %>
+    <%= link_to "Delete", article_path(article), method: :delete %>
+  <% end %>
+    <%# end %>
+<% else %>
+  no articles yet
+<% end %>
+
+<%= link_to "Add an article", new_article_path %>
