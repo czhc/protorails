@@ -33,14 +33,10 @@ class User < ActiveRecord::Base
     User.find_by_login(credential) || User.find_by_email(credential)
   end
 
-  def self.create_subscriber_for(user)
-    return unless u = User.find_by_login_or_email(user)
-    u.subscriber = Subscriber.create(user: u, email: u.email)
-  end
-
   protected
 
   def create_subscriber
-    self.subscriber = Subscriber.new(email: email)
+    return if self.subscriber
+    self.subscriber = Subscriber.create(email: email)
   end
 end

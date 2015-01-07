@@ -23,7 +23,14 @@ RSpec.describe User, :type => :model do
         in_array(User::RESERVED_NAMES).
         with_message("Login not available.")
     end
-    it { should validate_uniqueness_of(:email) }
+
+    # it { should validate_uniqueness_of(:email) } #shoulda is broken for case-sensitive
+
+    it "should validate uniqueness of email, case-insensitve" do
+      new_user = FactoryGirl.build(:user, email: user.email.downcase)
+      expect(new_user).to_not be_valid
+    end
+
     it { should validate_presence_of(:email) }
     it do 
       should allow_value(user.email).
@@ -61,17 +68,6 @@ RSpec.describe User, :type => :model do
       expect(User.find_by_login_or_email("non existent")).to be_nil
     end
   end
-
-  describe '.create_subscriber_for' do
-    it "for valid user" do
-      expect(User.create_subscriber_for(user.login)).to be_an_instance_of(Subscriber)
-    end
-
-    it "for invalid user" do
-      expect(User.create_subscriber_for("non existent")).to be_nil
-    end
-  end
-
 
   describe "callbacks" do
     it "#create_subscriber" do

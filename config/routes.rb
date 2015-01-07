@@ -19,6 +19,12 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments
   end
+  resources :subscribers, only: [:create] do
+    collection do
+      get '/activate' => 'subscribers#activate'
+      get '/unsubscribe' => 'subscribers#unsubscribe'
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
