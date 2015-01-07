@@ -1,10 +1,17 @@
 <% if @articles.any? %>
   <% @articles.each do |article| %>
-    <%= link_to "#{article.title}", article_path(article) %>
+    <li>
+    <%= link_to "#{article.title}", article_path(article) %> Average Rating: <%= star_rating(article.average_rating) %>
     <%= link_to "Edit", edit_article_path(article) %>
     <%= link_to "Delete", article_path(article), method: :delete %>
+    <%= link_to "Comment", new_article_comment_path(article.id) %> (<%= article.comments.count %>)
+    <ul>
+    <% article.comments.each do |comment| %>
+      <li><%= comment.thoughts %> (<%= comment.rating %>)</li>
+    <% end %>
+    </ul>
   <% end %>
-    <%# end %>
+  </li>
 <% else %>
   no articles yet
 <% end %>

@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :edit, :create, :update, :destroy]
   resources :subscriber, only: [:create, :destroy]
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
