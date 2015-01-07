@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150107141804) do
 
   create_table "articles", force: :cascade do |t|
@@ -29,9 +30,12 @@ ActiveRecord::Schema.define(version: 20150107141804) do
   end
 
   add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
+=======
+ActiveRecord::Schema.define(version: 20150107034840) do
+>>>>>>> do not require user for subsciber
 
   create_table "subscribers", force: :cascade do |t|
-    t.integer  "user_id",         limit: 4,               null: false
+    t.integer  "user_id",         limit: 4
     t.string   "email",           limit: 255,             null: false
     t.string   "activation_code", limit: 255
     t.datetime "activated_at"
