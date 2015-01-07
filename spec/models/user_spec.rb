@@ -61,4 +61,21 @@ RSpec.describe User, :type => :model do
       expect(User.find_by_login_or_email("non existent")).to be_nil
     end
   end
+
+  describe '.create_subscriber_for' do
+    it "for valid user" do
+      expect(User.create_subscriber_for(user.login)).to be_an_instance_of(Subscriber)
+    end
+
+    it "for invalid user" do
+      expect(User.create_subscriber_for("non existent")).to be_nil
+    end
+  end
+
+
+  describe "callbacks" do
+    it "#create_subscriber" do
+      expect(user.subscriber).to be_valid
+    end
+  end
 end

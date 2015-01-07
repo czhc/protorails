@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150106081422) do
+ActiveRecord::Schema.define(version: 20150106090317) do
+
+  create_table "subscribers", force: :cascade do |t|
+    t.integer  "user_id",         limit: 4,               null: false
+    t.string   "email",           limit: 255,             null: false
+    t.string   "activation_code", limit: 255
+    t.datetime "activated_at"
+    t.integer  "state",           limit: 4,   default: 0
+    t.datetime "unsubscribed_at"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "login",           limit: 255,                 null: false
