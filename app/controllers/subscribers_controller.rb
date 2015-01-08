@@ -1,8 +1,12 @@
 class SubscribersController < ApplicationController
+  layout false
+
   def create
     @subscriber = Subscriber.new(subscriber_params)
     if @subscriber.save
+      render 'create'
     else
+      render 'new'
     end
   end
 
@@ -11,11 +15,9 @@ class SubscribersController < ApplicationController
     if @subscriber
       unless @subscriber.activate!
         flash[:error] = "Whoops, something went wrong."
-        redirect_to root_path        
       end
     else
       flash[:error] = "Invalid subscriber."
-      redirect_to root_path
     end
   end
 
@@ -25,11 +27,9 @@ class SubscribersController < ApplicationController
     if @subscriber
       unless @subscriber.unsubscribe!
         flash[:error] = "Whoops, something went wrong."
-        redirect_to root_path
       end
     else
       flash[:error] = "Invalid subscriber."
-      redirect_to root_path
     end
   rescue ActiveSupport::MessageVerifier::InvalidSignature
     Rails.logger.info "ERROR: InvalidSignature for #{params[:auth_token]}"

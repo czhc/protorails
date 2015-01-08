@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+  <title>Activate account</title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <style type="text/css">
+    *{margin:0;padding:0;}
+    a{
+      color:#206281;
+      text-decoration:none;
+    }
+    a:hover{
+      text-decoration:underline;
+    }
+    a.block:hover{
+      background-color:#F7FBFF !important;
+    }
+  </style>
+</head>
+<body>
+  <h1> Now you say "Who's there?"</h1>
+  <h3> Hi <%= @user ? @user.login : @subscriber.email %>, </h3>
+  <div class="form-control">
+    <p>
+      Click here to confirm your email account: <%= link_to "CONFIRM", @activate_url, target: '_blank' %>
+    </p>
+    <p>
+      Click <%= link_to "here", @unsubscribe_url, target: '_blank' %> to unsubscribe from further notifications.
+    </p>
+  </div>
+</body>
+</html>

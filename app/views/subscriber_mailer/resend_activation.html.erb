@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+  <title>Activate account</title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+</head>
+<body>
+  <h1> I hurd you were lookin fo me </h1>
+  <h3> Hi <%= @user ? @user.login : @subscriber.email %> </h3>
+  <div class="form-control">
+    <p>
+      You have requested to resend your activation code.    
+    </p>
+    <p>
+      Click here to confirm your email account: <%= link_to "CONFIRM", @activate_url, class: 'form-control' %>
+    </p>
+    <p>
+      Click <%= link_to "here", @unsubscribe_url %> to unsubscribe from further notifications.
+    </p>
+  </div>
+</body>
+</html>
