@@ -13,10 +13,10 @@
       You have requested to resend your activation code.    
     </p>
     <p>
-      Click here to confirm your email account: <%= link_to "CONFIRM", @activate_url, class: 'form-control' %>
+      Click here to confirm your email account: <%= link_to "CONFIRM", @activate_url, target: '_blank' %>
     </p>
     <p>
-      Click <%= link_to "here", @unsubscribe_url %> to unsubscribe from further notifications.
+      Click <%= link_to "here", @unsubscribe_url, target: '_blank' %> to unsubscribe from further notifications.
     </p>
   </div>
 </body>
