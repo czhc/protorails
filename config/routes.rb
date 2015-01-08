@@ -21,8 +21,8 @@ Rails.application.routes.draw do
   end
   resources :subscribers, only: [:create] do
     collection do
-      get '/activate' => 'subscribers#activate'
-      get '/unsubscribe' => 'subscribers#unsubscribe'
+      get '/activate' => 'subscribers#activate', as: :activate
+      get '/unsubscribe' => 'subscribers#unsubscribe', as: :unsubscribe
     end
   end
 
