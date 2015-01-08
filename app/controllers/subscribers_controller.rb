@@ -28,11 +28,15 @@ class SubscribersController < ApplicationController
   def activate
     @subscriber = Subscriber.find_by_activation_code(params[:activation_code])
     if @subscriber
-      unless @subscriber.activate!
+      if @subscriber.activate!
+        render
+      else
         flash.now[:error] = "Whoops, something went wrong."
+        redirect_to root_path
       end
     else
       flash.now[:error] = "Invalid subscriber."
+      redirect_to root_path
     end
   end
 
@@ -40,11 +44,15 @@ class SubscribersController < ApplicationController
     email = verifier.verify(params[:auth_token])
     @subscriber = Subscriber.find_by_email(email)
     if @subscriber
-      unless @subscriber.unsubscribe!
+      if @subscriber.unsubscribe!
+        render
+      else
         flash.now[:error] = "Whoops, something went wrong."
+        redirect_to root_path
       end
     else
       flash.now[:error] = "Invalid subscriber."
+      redirect_to root_path
     end
   rescue ActiveSupport::MessageVerifier::InvalidSignature
     Rails.logger.info "ERROR: InvalidSignature for #{params[:auth_token]}"

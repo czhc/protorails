@@ -5,16 +5,39 @@ RSpec.describe SubscribersController, :type => :controller do
   let (:invalid_attributes) { FactoryGirl.attributes_for(:subscriber).merge({email: nil}) }
 
   describe "POST create" do
-    it "for valid subscribers" do
-      expect {
+    describe "for valid subscribers" do
+      it "should create subscriber" do
+        expect {
+          post :create, {subscriber: valid_attributes, format: 'js'}
+        }.to change(Subscriber, :count).by(1)
+      end
+
+      it "should render create view" do
         post :create, {subscriber: valid_attributes, format: 'js'}
-      }.to change(Subscriber, :count).by(1)
+        expect(response).to render_template('create')
+        expect(flash[:notice]).to_not be_nil
+      end
     end
 
-    it "for invalid subscribers" do
-      expect {
+    describe "for invalid subscribers" do
+      it "should not create subscriber" do
+        expect {
+          post :create, {subscriber: invalid_attributes, format: 'js'}
+        }.to change(Subscriber, :count).by(0)
+      end
+
+      it "should render error message for existing subscriber" do
+        subscriber = FactoryGirl.create(:subscriber)
+        post :create, {subscriber: valid_attributes.merge({email: subscriber.email}), format: 'js'}
+        expect(response).to render_template('error')
+        expect(flash[:error]).to include("already subscribed")
+      end
+
+      it "should render error message for new subscriber" do
         post :create, {subscriber: invalid_attributes, format: 'js'}
-      }.to change(Subscriber, :count).by(0)
+        expect(response).to render_template('error')
+        expect(flash[:error]).to include("Invalid")
+      end
     end
   end
 
