@@ -21,7 +21,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     sign_out current_user if current_user
-    flash[:notce] = "Logged Out"
+    flash[:notice] = "Logged Out"
     redirect_to root_path
   end
 

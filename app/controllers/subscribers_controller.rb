@@ -29,10 +29,10 @@ class SubscribersController < ApplicationController
     @subscriber = Subscriber.find_by_activation_code(params[:activation_code])
     if @subscriber
       unless @subscriber.activate!
-        flash[:error] = "Whoops, something went wrong."
+        flash.now[:error] = "Whoops, something went wrong."
       end
     else
-      flash[:error] = "Invalid subscriber."
+      flash.now[:error] = "Invalid subscriber."
     end
   end
 
