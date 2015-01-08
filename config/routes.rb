@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
 
   resources :users, only: [:new, :edit, :create, :update, :destroy]
-  resources :subscriber, only: [:create, :destroy]
   resources :articles do
     resources :comments
   end

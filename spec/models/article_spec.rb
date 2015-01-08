@@ -32,17 +32,9 @@ RSpec.describe Article, :type => :model do
     end
   end
 
-  describe 'validity' do
-    it 'is not valid with a title of less than three characters' do
-      article = Article.new(title: "kl")
-      expect(article).to have(1).error_on(:title)
-      expect(article).not_to be_valid
-    end
-
-    it "is not valid unless it has a unique title" do
-      Article.create(title: "London Bridge ")
-      article = Article.new(title: "London Bridge")
-      expect(article).to have(1).error_on(:title)
-    end
+  describe 'validations' do
+    subject { FactoryGirl.create(:article) }
+    it { should ensure_length_of(:title).is_at_least(3) }
+    it { should validate_uniqueness_of(:title) }
   end
 end

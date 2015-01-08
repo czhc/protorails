@@ -72,6 +72,7 @@ group :development, :test do
   gem 'capybara'
   gem 'capybara-webkit'
   # gem 'rack_session_access'
+  gem 'forgery'
 end
 
 group :test do
