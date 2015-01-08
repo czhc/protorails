@@ -1,12 +1,11 @@
 <div class="pull-right">
+  <ul class="list-unstyled list-inline">
+    <li id="sub-alert"></li>
+    <li><%= link_to "Home", root_path %></li>
   <% if current_user %>
-    <ul class="list-unstyled list-inline">
       <li><%= link_to current_user.email, account_path %></li>
       <li><%= link_to "Log Out", logout_path, method: :delete %></li>
-    </ul>
   <% else %>
-    <ul class="list-unstyled list-inline">
-      <li id="sub-alert"></li>
       <li><%= render partial: "subscriber_form" %></li>
       <li><%= link_to "Sign In", "#", data: {toggle: "modal", target: "#signin"} %></li>
       <li><%= link_to "Sign Up", "#", data: {toggle: "modal", target: "#signup"}  %></li>
