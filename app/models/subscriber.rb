@@ -40,6 +40,6 @@ class Subscriber < ActiveRecord::Base
 
   protected
   def make_activation_code
-    self.activation_code = Tripsales::Utility.make_token
+    self.activation_code = Protorails::Utility.make_token
   end
 end
