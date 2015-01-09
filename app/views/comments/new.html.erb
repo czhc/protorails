@@ -1,7 +1,0 @@
-<%= form_for [@article, @comment] do |form| %>
-  <%= form.label :thoughts %>
-  <%= form.text_area :thoughts %>
-  <%= form.label :rating %>
-  <%= form.select :rating, (1..5) %>
-  <%= form.submit 'Leave Comment' %>
-<% end %>

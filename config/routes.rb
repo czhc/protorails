@@ -15,9 +15,6 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
 
   resources :users, only: [:new, :edit, :create, :update, :destroy]
-  resources :articles do
-    resources :comments
-  end
 
   resources :subscribers, only: [:create]
   get '/subscribers/activate', controller: :subscribers, action: :activate, as: :activate
