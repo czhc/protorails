@@ -34,6 +34,12 @@ gem 'bcrypt', '~> 3.1.7'
 group :development do
   gem 'quiet_assets'
   gem 'letter_opener'
+
+  gem 'capistrano', '~> 3.2.0'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler', '~> 1.1.2'
+  gem 'capistrano-gitflow', git: "https://github.com/YotpoLtd/capistrano-gitflow.git"
 end
 
 # Use Unicorn as the app server
